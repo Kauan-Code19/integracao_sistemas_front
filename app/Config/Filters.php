@@ -2,16 +2,17 @@
 
 namespace Config;
 
-use CodeIgniter\Config\Filters as BaseFilters;
+use App\Filters\AuthFilter;
 use CodeIgniter\Filters\Cors;
 use CodeIgniter\Filters\CSRF;
-use CodeIgniter\Filters\DebugToolbar;
-use CodeIgniter\Filters\ForceHTTPS;
 use CodeIgniter\Filters\Honeypot;
-use CodeIgniter\Filters\InvalidChars;
 use CodeIgniter\Filters\PageCache;
-use CodeIgniter\Filters\PerformanceMetrics;
+use CodeIgniter\Filters\ForceHTTPS;
+use CodeIgniter\Filters\DebugToolbar;
+use CodeIgniter\Filters\InvalidChars;
 use CodeIgniter\Filters\SecureHeaders;
+use CodeIgniter\Filters\PerformanceMetrics;
+use CodeIgniter\Config\Filters as BaseFilters;
 
 class Filters extends BaseFilters
 {
@@ -34,6 +35,7 @@ class Filters extends BaseFilters
         'forcehttps'    => ForceHTTPS::class,
         'pagecache'     => PageCache::class,
         'performance'   => PerformanceMetrics::class,
+        'auth'          => AuthFilter::class,
     ];
 
     /**
@@ -103,5 +105,11 @@ class Filters extends BaseFilters
      *
      * @var array<string, array<string, list<string>>>
      */
-    public array $filters = [];
+    public array $filters = [
+        'auth' => ['before' => [
+            'home',
+            'user_registration',
+            'register_user',
+        ]],
+    ];
 }

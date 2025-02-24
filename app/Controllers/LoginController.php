@@ -58,6 +58,12 @@ class LoginController extends BaseController
 
     private function storeToken($token): void
     {
-        session()->set('jwt_token', $token);
+        if ($token) {
+            $expiracao = time() + 1500;
+            session()->set([
+                'jwt_token' => $token,
+                'jwt_expires_at' => $expiracao,
+            ]);
+        }
     }
 }
