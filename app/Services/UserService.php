@@ -4,11 +4,12 @@ namespace App\Services;
 
 use Exception;
 
-class UsuarioService
+class UserService
 {
     public function __construct()
     {
         $this->apiUrlLogin = getenv('API_URL_LOGIN');
+        $this->apiUrlUserRegister = getenv('API_URL_USER_REGISTER');
     }
 
 
@@ -18,11 +19,17 @@ class UsuarioService
     }
 
 
-    private function sendRequest($method, $url, $data = [])
+    public function registerUser($data, $token)
+    {
+        return $this->sendRequest('POST', $this->apiUrlUserRegister, $data, $token);
+    }
+
+
+    private function sendRequest($method, $url, $data = [], $token = null)
     {
         $ch = curl_init();
 
-        $this->setCurlOptions($ch, $method, $url, $data);
+        $this->setCurlOptions($ch, $method, $url, $data, $token);
 
         $response = curl_exec($ch);
         $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
@@ -40,11 +47,19 @@ class UsuarioService
     }
 
 
-    private function setCurlOptions($ch, $method, $url, $data)
+    private function setCurlOptions($ch, $method, $url, $data, $token = null)
     {
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
+
+        $headers = ['Content-Type: application/json'];
+
+        if ($token) {
+            $headers[] = 'Authorization: Bearer ' . $token;
+        }
+
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
 
         if ($method === 'POST') {
             curl_setopt($ch, CURLOPT_POST, true);

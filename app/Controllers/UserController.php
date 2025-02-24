@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Services\UserService;
 
-class LoginController extends BaseController
+class UserController extends BaseController
 {
     private $userService;
 
@@ -14,38 +14,39 @@ class LoginController extends BaseController
     }
 
 
-    public function index(): string
+    public function userRegistrationView()
     {
-        return view('autenticacao/login');
+        return view('usuario/user_registration');
     }
 
 
-    public function logar()
+    public function registerUser()
     {
-        $data = $this->getLoginData();
-        $response = $this->userService->login($data);
+        $data = $this->getUserRegistrationData();
+        $token = session()->get('jwt_token');
+        $response = $this->userService->registerUser($data, $token);
 
-        if ($this->isLoginFailed($response['status'])) {
+        if ($this->isRegisterFailed($response['status'])) {
             return $this->redirectBackWithError($response);
         }
 
-        $this->storeToken($response['body']['token'] ?? null);
         return redirect()->to('/home');
     }
 
 
-    private function getLoginData(): array
+    private function getUserRegistrationData(): array
     {
         return [
             'email' => $this->request->getPost('email'),
             'senha' => $this->request->getPost('senha'),
+            'perfil' => strtoupper($this->request->getPost('perfil'))
         ];
     }
 
 
-    private function isLoginFailed($httpCode): bool
+    private function isRegisterFailed($httpCode): bool
     {
-        return $httpCode !== 200;
+        return $httpCode !== 201;
     }
 
 
@@ -53,11 +54,5 @@ class LoginController extends BaseController
     {
         $errorMessage = $response['body']['error'] ?? 'Erro ao conectar com a API.';
         return redirect()->back()->with('error', $errorMessage);
-    }
-
-
-    private function storeToken($token): void
-    {
-        session()->set('jwt_token', $token);
     }
 }
