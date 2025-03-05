@@ -1,75 +1,95 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+.container {
     display: flex;
+    height: 100vh;
+    font-family: 'Poppins', sans-serif;
+}
+
+.login {
+    width: 40%;
+    background: #0a0a0a;
+    color: white;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
+    padding: 2rem;
 }
 
-.container {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 400px;
+.error-message {
+    width: 100%;
+    max-width: 300px;
+    background: #ff4d4d;
+    color: white;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
     text-align: center;
-}
-
-h2 {
-    margin-bottom: 20px;
-}
-
-label {
-    display: block;
-    text-align: left;
-    margin-bottom: 5px;
     font-weight: bold;
+    box-shadow: 0px 0px 10px rgba(255, 77, 77, 0.5);
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.error-message {
+    width: 100%;
+    max-width: 300px;
+    background: #ff4d4d;
+    color: white;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    box-shadow: 0px 0px 10px rgba(255, 77, 77, 0.5);
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+form {
+    width: 100%;
+    max-width: 300px;
 }
 
 input {
     width: 100%;
-    padding: 8px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
+    padding: 10px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 5px;
 }
 
-.buttonEntrar {
+button {
     width: 100%;
     padding: 10px;
-    background-color: #4CAF50; /* Verde suave */
+    background: royalblue;
     color: white;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 5px;
     border: none;
-    cursor: pointer;
-    transition: background 0.3s, transform 0.2s;
-}
-
-.buttonEntrar:hover {
-    background-color: #45a049;
-}
-
-
-.buttonEntrar:active {
-    transform: scale(0.98);
-}
-
-
-.buttonEntrar:focus {
-    outline: 2px solid #2e7d32;
-}
-
-.error-message {
-    background-color: #ffcccc;
-    color: #cc0000;
-    padding: 10px;
-    border: 1px solid #cc0000;
-    margin-bottom: 15px;
-    text-align: center;
     border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: darkblue;
+}
+
+.imagem {
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #1a1a1a;
+}
+
+.imagem img {
+    max-width: 80%;
+    height: auto;
 }
