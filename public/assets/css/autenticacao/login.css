@@ -29,20 +29,6 @@
     animation: fadeIn 0.3s ease-in-out;
 }
 
-.error-message {
-    width: 100%;
-    max-width: 300px;
-    background: #ff4d4d;
-    color: white;
-    padding: 10px;
-    margin-bottom: 15px;
-    border-radius: 5px;
-    text-align: center;
-    font-weight: bold;
-    box-shadow: 0px 0px 10px rgba(255, 77, 77, 0.5);
-    animation: fadeIn 0.3s ease-in-out;
-}
-
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -57,6 +43,7 @@
 form {
     width: 100%;
     max-width: 300px;
+    padding: 8px;
 }
 
 input {
@@ -92,4 +79,50 @@ button:hover {
 .imagem img {
     max-width: 80%;
     height: auto;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: #1a1a1a;
+    }
+
+    .imagem {
+        display: none;
+    }
+
+    .login {
+        width: 60%;
+        height: 55%;
+        padding: 2rem;
+        max-height: 400px;
+        background: #0a0a0a;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    form {
+        max-width: 400px;
+    }
+}
+
+@media (max-width: 640px) {
+    .login {
+        height: 70%;
+        width: 75%;
+    }
+}
+
+@media (max-width: 740px) and (orientation: landscape) {
+    .login {
+        height: 90%;
+        width: 75%;
+    }
 }
