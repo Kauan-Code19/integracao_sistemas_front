@@ -1,77 +1,75 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+.container {
     display: flex;
+    font-family: 'Poppins', sans-serif;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    background: #1a1a1a;
+}
+
+.cadastro {
+    width: 50%;
+    padding: 2rem;
+    max-height: 400px;
+    background: #0a0a0a;
+    color: white;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
+    border-radius: 12px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
 }
 
-.container {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 400px;
-    text-align: center;
-}
-
-h2 {
-    margin-bottom: 20px;
-}
-
-label {
-    display: block;
-    text-align: left;
-    margin-bottom: 5px;
-    font-weight: bold;
+form {
+    padding: 10px;
 }
 
 input {
     width: 100%;
-    padding: 8px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
+    padding: 10px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 5px;
 }
 
 .buttonRegistrar {
     width: 100%;
     padding: 10px;
-    background-color: #4CAF50; /* Verde suave */
+    background: royalblue;
     color: white;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 5px;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background 0.3s, transform 0.2s;
 }
 
 .buttonRegistrar:hover {
-    background-color: #45a049;
-}
-
-
-.buttonRegistrar:active {
-    transform: scale(0.98);
-}
-
-
-.buttonRegistrar:focus {
-    outline: 2px solid #2e7d32;
+    background: darkblue;
 }
 
 .error-message {
-    background-color: #ffcccc;
-    color: #cc0000;
+    width: 100%;
+    max-width: 300px;
+    background: #ff4d4d;
+    color: white;
     padding: 10px;
-    border: 1px solid #cc0000;
     margin-bottom: 15px;
-    text-align: center;
     border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    box-shadow: 0px 0px 10px rgba(255, 77, 77, 0.5);
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 select {
@@ -80,5 +78,37 @@ select {
     margin: 8px 0;
     border: 1px solid #ccc;
     border-radius: 4px;
-    background-color: white;
+}
+
+@media (max-width: 768px) {
+    .cadastro {
+        width: 70%;
+    }
+}
+
+@media (max-width: 882px) and (orientation: landscape) {
+    .cadastro {
+        height: 95%;
+    }
+
+    h2 {
+        font-size: 1.1rem;
+        word-wrap: break-word;
+        margin-top: 8px;
+    }
+
+    .buttonRegistrar {
+        height: 14%;
+    }
+}
+
+@media (max-width: 500px) {
+    .cadastro {
+        width: 90%;
+    }
+
+    h2 {
+        font-size: 1.1rem;
+        word-wrap: break-word;
+    }
 }

@@ -7,6 +7,7 @@
     <title>Traduzzo</title>
     <link rel="stylesheet" href="<?= base_url('assets/css/reset.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/css/usuario/user_registration.css') ?>">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -17,23 +18,25 @@
             </div>
         <?php endif; ?>
 
-        <h2>Cadastro De Usuários</h2>
-        <form action="<?= base_url('register_user') ?>" method="POST">
-            <label for="email">E-mail</label>
-            <input type="email" id="email" name="email" required>
+        <div class="cadastro">
+            <h2>Cadastro De Usuários</h2>
+            <form action="<?= base_url('register_user') ?>" method="POST">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" name="email" required>
 
-            <label for="senha">Senha</label>
-            <input type="password" id="senha" name="senha" required>
+                <label for="senha">Senha</label>
+                <input type="password" id="senha" name="senha" required>
 
-            <label for="perfil">Perfil</label>
-            <select id="perfil" name="perfil" required>
-                <option value="ADMINISTRADOR">ADMINISTRADOR</option>
-                <option value="COMERCIAL">COMERCIAL</option>
-                <option value="PROJETOS">PROJETOS</option>
-            </select>
+                <label for="perfil">Perfil</label>
+                <select id="perfil" name="perfil" required>
+                    <option value="ADMINISTRADOR">ADMINISTRADOR</option>
+                    <option value="COMERCIAL">COMERCIAL</option>
+                    <option value="PROJETOS">PROJETOS</option>
+                </select>
 
-            <button type="submit" class="buttonRegistrar">Registrar</button>
-        </form>
+                <button type="submit" class="buttonRegistrar">Registrar</button>
+            </form>
+        </div>
     </div>
 </body>
 
