@@ -1,0 +1,135 @@
+.container {
+    display: flex;
+    font-family: 'Poppins', sans-serif;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    background: #1a1a1a;
+}
+
+.listagem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    padding: 2rem 3rem;
+    min-height: 500px;
+    background: #0a0a0a;
+    color: white;
+    border-radius: 12px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+}
+
+.table-container {
+    width: 100%;
+}
+
+h2 {
+    margin-bottom: 1rem;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #BFBFBF;
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: #737373; 
+}
+
+tr:nth-child(even) {
+    background-color: #404040;
+}
+
+tr:hover {
+    background-color: #737373;
+}
+
+.btn-editar i {
+    color: #007bff;
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+.btn-deletar i {
+    color: #dc3545; 
+    font-size: 18px;
+}
+
+.btn-editar:hover i {
+    color: #0056b3; 
+}
+
+.btn-deletar:hover i {
+    color: #a71d2a;
+}
+
+.buttonCadastrar {
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    background: royalblue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.buttonCadastrar:hover {
+    background: darkblue;
+}
+
+@media (max-width: 768px) {
+    .listagem {
+        width: 95%;
+    }
+
+    .table-container {
+        width: 100%;
+        overflow-x: auto;
+    }
+}
+
+@media (max-width: 932px) and (orientation: landscape) {
+    .container {
+        overflow: hidden;
+    }
+
+    .listagem {
+        height: auto;
+        min-height: auto;
+        max-height: 350px;
+        overflow: hidden;
+    }
+
+    .table-container {
+        width: 100%;
+        max-height: 55vh;
+        overflow-y: auto;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .buttonCadastrar {
+        background: royalblue;
+        color: white;
+        text-align: center;
+        margin-top: 10px;
+        flex-shrink: 0; 
+    }
+
+    .buttonCadastrar:hover {
+        background: darkblue;
+    }
+}

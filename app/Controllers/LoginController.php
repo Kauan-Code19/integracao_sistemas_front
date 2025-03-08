@@ -30,7 +30,7 @@ class LoginController extends BaseController
         }
 
         $this->storeToken($response['body']['token'] ?? null);
-        return redirect()->to('/home');
+        return redirect()->to('/user_list');
     }
 
 

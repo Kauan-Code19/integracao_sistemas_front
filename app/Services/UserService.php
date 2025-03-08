@@ -10,12 +10,19 @@ class UserService
     {
         $this->apiUrlLogin = getenv('API_URL_LOGIN');
         $this->apiUrlUserRegister = getenv('API_URL_USER_REGISTER');
+        $this->apiUrlUserList = getenv('API_URL_USER_LIST');
     }
 
 
     public function login($data)
     {
         return $this->sendRequest('POST', $this->apiUrlLogin, $data);
+    }
+
+
+    public function returnUsers($token)
+    {
+        return $this->sendRequest('GET', $this->apiUrlUserList, [], $token);
     }
 
 
@@ -49,21 +56,38 @@ class UserService
 
     private function setCurlOptions($ch, $method, $url, $data, $token = null)
     {
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt_array($ch, [
+            CURLOPT_URL => $url,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_HTTPHEADER => $this->prepareHeaders($token),
+        ]);
 
+        $this->applyMethodOptions($ch, $method, $data);
+    }
+
+
+    private function prepareHeaders($token)
+    {
         $headers = ['Content-Type: application/json'];
 
         if ($token) {
             $headers[] = 'Authorization: Bearer ' . $token;
         }
 
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        return $headers;
+    }
 
 
-        if ($method === 'POST') {
-            curl_setopt($ch, CURLOPT_POST, true);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+    private function applyMethodOptions($ch, $method, $data)
+    {
+        switch (strtoupper($method)) {
+            case 'POST':
+                curl_setopt($ch, CURLOPT_POST, true);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+                break;
+
+            case 'GET':
+                break;
         }
     }
 }

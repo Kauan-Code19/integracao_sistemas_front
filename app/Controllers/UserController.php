@@ -14,6 +14,31 @@ class UserController extends BaseController
     }
 
 
+    public function userListView()
+    {
+        $token = $this->getToken();
+        $response =  $this->userService->returnUsers($token);
+
+        if ($this->isReturnUsersFailed($response['status'])) {
+            return $this->redirectBackWithError($response);
+        }
+
+        return view('usuario/user_list', ['usuarios' => $response['body']]);
+    }
+
+
+    private function getToken()
+    {
+        return session()->get('jwt_token');
+    }
+
+
+    private function isReturnUsersFailed($httpCode): bool
+    {
+        return $httpCode !== 200;
+    }
+
+
     public function userRegistrationView()
     {
         return view('usuario/user_registration');
@@ -30,7 +55,7 @@ class UserController extends BaseController
             return $this->redirectBackWithError($response);
         }
 
-        return redirect()->to('/home');
+        return redirect()->to('/user_list');
     }
 
 
