@@ -31,7 +31,7 @@
                                     <td><?= esc($usuario['email']) ?></td>
                                     <td><?= esc($usuario['perfil']) ?></td>
                                     <td>
-                                        <a href="<?= base_url('editar_usuario/' . $usuario['id']) ?>" class="btn-editar">
+                                        <a href="<?= base_url('user_edit/' . $usuario['id']) ?>" class="btn-editar">
                                             <i class="fas fa-edit"></i>
                                         </a>
                                         <a href="<?= base_url('deletar_usuario/' . $usuario['id']) ?>" class="btn-deletar" onclick="return confirm('Tem certeza que deseja excluir este usuário?');">

@@ -19,7 +19,7 @@ class UserController extends BaseController
         $token = $this->getToken();
         $response =  $this->userService->returnUsers($token);
 
-        if ($this->isReturnUsersFailed($response['status'])) {
+        if ($this->isHttpStatusFailed($response['status'], HTTP_OK)) {
             return $this->redirectBackWithError($response);
         }
 
@@ -27,15 +27,51 @@ class UserController extends BaseController
     }
 
 
-    private function getToken()
+    public function userEditView($userId)
     {
-        return session()->get('jwt_token');
+        $token = $this->getToken();
+        $response =  $this->userService->returnUser($userId, $token);
+
+        if ($this->isHttpStatusFailed($response['status'], HTTP_OK)) {
+            return $this->redirectBackWithError($response);
+        }
+
+        return view('usuario/user_edit', ['usuario' => $response['body']]);
     }
 
 
-    private function isReturnUsersFailed($httpCode): bool
+    public function editUser()
     {
-        return $httpCode !== 200;
+        if ($this->request->getPost('_method') !== 'PUT') {
+            return redirect()->back()->with('error', 'Método não permitido!');
+        }
+
+        $userId = $this->getUserIdForPost();
+        $data = $this->getUserEditData();
+        $token = $this->getToken();
+        $response = $this->userService->editUser($userId, $data, $token);
+
+        if ($this->isHttpStatusFailed($response['status'], HTTP_OK)) {
+            return $this->redirectBackWithError($response);
+        }
+
+        return redirect()->to('/user_list');
+    }
+
+
+    private function getUserIdForPost()
+    {
+        return $this->request->getPost('id');
+    }
+
+
+    private function getUserEditData(): array
+    {
+        return [
+            'email' => $this->request->getPost('email'),
+            'senha' => $this->request->getPost('senha'),
+            'perfil' => strtoupper($this->request->getPost('perfil'))
+        ];
     }
 
 
@@ -48,10 +84,10 @@ class UserController extends BaseController
     public function registerUser()
     {
         $data = $this->getUserRegistrationData();
-        $token = session()->get('jwt_token');
+        $token = $this->getToken();
         $response = $this->userService->registerUser($data, $token);
 
-        if ($this->isRegisterFailed($response['status'])) {
+        if ($this->isHttpStatusFailed($response['status'], HTTP_CREATED)) {
             return $this->redirectBackWithError($response);
         }
 
@@ -69,15 +105,22 @@ class UserController extends BaseController
     }
 
 
-    private function isRegisterFailed($httpCode): bool
+    private function getToken()
     {
-        return $httpCode !== 201;
+        return session()->get('jwt_token');
+    }
+
+
+    private function isHttpStatusFailed($httpCode, $expectedStatus)
+    {
+        return $httpCode !== $expectedStatus;
     }
 
 
     private function redirectBackWithError($response)
     {
-        $errorMessage = $response['body']['error'] ?? 'Erro ao conectar com a API.';
+        $errorMessage = isset($response['body']['error']) ? $response['body']['error']
+            : 'Erro ao se conectar com o servidor.';
         return redirect()->back()->with('error', $errorMessage);
     }
 }

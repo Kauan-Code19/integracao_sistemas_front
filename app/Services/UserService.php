@@ -9,6 +9,7 @@ class UserService
     public function __construct()
     {
         $this->apiUrlLogin = getenv('API_URL_LOGIN');
+        $this->apiUrlUser = getenv('API_URL_USER');
         $this->apiUrlUserRegister = getenv('API_URL_USER_REGISTER');
         $this->apiUrlUserList = getenv('API_URL_USER_LIST');
     }
@@ -26,9 +27,21 @@ class UserService
     }
 
 
+    public function returnUser($userId, $token)
+    {
+        return $this->sendRequest('GET', $this->apiUrlUser . $userId, [], $token);
+    }
+
+
     public function registerUser($data, $token)
     {
         return $this->sendRequest('POST', $this->apiUrlUserRegister, $data, $token);
+    }
+
+
+    public function editUser($userId, $data, $token)
+    {
+        return $this->sendRequest('PUT', $this->apiUrlUser . $userId, $data, $token);
     }
 
 
@@ -83,6 +96,11 @@ class UserService
         switch (strtoupper($method)) {
             case 'POST':
                 curl_setopt($ch, CURLOPT_POST, true);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+                break;
+
+            case 'PUT':
+                curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
                 curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
                 break;
 
