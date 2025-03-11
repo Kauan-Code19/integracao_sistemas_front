@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use DateTime;
+use App\Enums\Estado;
 use App\Services\UserService;
 
 class UserController extends BaseController
@@ -23,7 +25,10 @@ class UserController extends BaseController
             return $this->redirectBackWithError($response);
         }
 
-        return view('usuario/user_list', ['usuarios' => $response['body']]);
+        return view('templates/main', [
+            'titulo' => 'Usuários',
+            'conteudo' => view('usuario/user_list', ['usuarios' => $response['body']])
+        ]);
     }
 
 
@@ -36,7 +41,10 @@ class UserController extends BaseController
             return $this->redirectBackWithError($response);
         }
 
-        return view('usuario/user_edit', ['usuario' => $response['body']]);
+        return view('templates/main', [
+            'titulo' => 'Edição de Usuário',
+            'conteudo' => view('usuario/user_edit', ['usuario' => $response['body']])
+        ]);
     }
 
 
@@ -68,8 +76,26 @@ class UserController extends BaseController
     private function getUserEditData(): array
     {
         return [
-            'email' => $this->request->getPost('email'),
-            'senha' => $this->request->getPost('senha'),
+            'email' => empty($this->request->getPost('email')) ? null : $this->request->getPost('email'),
+            'senha' => empty($this->request->getPost('senha')) ? null : $this->request->getPost('senha'),
+            'cpf' => empty($this->request->getPost('cpf')) ? null : $this->request->getPost('cpf'),
+            'nomeCompleto' => empty($this->request->getPost('nomeCompleto')) ? null : $this->request->getPost('nomeCompleto'),
+            'dataNascimento' => $this->formatarData($this->request->getPost('dataNascimento')),
+            'telefone' => empty($this->request->getPost('telefone')) ? null : $this->request->getPost('telefone'),
+            'endereco' => [
+                'logradouro' => empty($this->request->getPost('logradouro')) ? null : $this->request->getPost('logradouro'),
+                'numero' => empty($this->request->getPost('numero')) ? null : $this->request->getPost('numero'),
+                'bairro' => empty($this->request->getPost('bairro')) ? null : $this->request->getPost('bairro'),
+                'cep' => empty($this->request->getPost('cep')) ? null : $this->request->getPost('cep'),
+                'cidade' => empty($this->request->getPost('cidade')) ? null : $this->request->getPost('cidade'),
+                'estado' => empty($this->request->getPost('estado')) ? null : $this->request->getPost('estado')
+            ],
+            'dadosBancarios' => [
+                'banco' => empty($this->request->getPost('banco')) ? null : $this->request->getPost('banco'),
+                'conta' => empty($this->request->getPost('conta')) ? null : $this->request->getPost('conta'),
+                'agencia' => empty($this->request->getPost('agencia')) ? null : $this->request->getPost('agencia'),
+                'chavePix' => empty($this->request->getPost('chavePix')) ? null : $this->request->getPost('chavePix')
+            ],
             'perfil' => strtoupper($this->request->getPost('perfil'))
         ];
     }
@@ -77,7 +103,11 @@ class UserController extends BaseController
 
     public function userRegistrationView()
     {
-        return view('usuario/user_registration');
+        $estados = Estado::cases();
+        return view('templates/main', [
+            'titulo' => 'Cadastro de Usuário',
+            'conteudo' => view('usuario/user_registration', ['estados' => $estados])
+        ]);
     }
 
 
@@ -98,11 +128,53 @@ class UserController extends BaseController
     private function getUserRegistrationData(): array
     {
         return [
-            'email' => $this->request->getPost('email'),
-            'senha' => $this->request->getPost('senha'),
+            'email' => empty($this->request->getPost('email')) ? null : $this->request->getPost('email'),
+            'senha' => empty($this->request->getPost('senha')) ? null : $this->request->getPost('senha'),
+            'cpf' => empty($this->request->getPost('cpf')) ? null : $this->request->getPost('cpf'),
+            'nomeCompleto' => empty($this->request->getPost('nomeCompleto')) ? null : $this->request->getPost('nomeCompleto'),
+            'dataNascimento' => $this->formatarData($this->request->getPost('dataNascimento')),
+            'telefone' => empty($this->request->getPost('telefone')) ? null : $this->request->getPost('telefone'),
+            'endereco' => [
+                'logradouro' => empty($this->request->getPost('logradouro')) ? null : $this->request->getPost('logradouro'),
+                'numero' => empty($this->request->getPost('numero')) ? null : $this->request->getPost('numero'),
+                'bairro' => empty($this->request->getPost('bairro')) ? null : $this->request->getPost('bairro'),
+                'cep' => empty($this->request->getPost('cep')) ? null : $this->request->getPost('cep'),
+                'cidade' => empty($this->request->getPost('cidade')) ? null : $this->request->getPost('cidade'),
+                'estado' => empty($this->request->getPost('estado')) ? null : $this->request->getPost('estado')
+            ],
+            'dadosBancarios' => [
+                'banco' => empty($this->request->getPost('banco')) ? null : $this->request->getPost('banco'),
+                'conta' => empty($this->request->getPost('conta')) ? null : $this->request->getPost('conta'),
+                'agencia' => empty($this->request->getPost('agencia')) ? null : $this->request->getPost('agencia'),
+                'chavePix' => empty($this->request->getPost('chavePix')) ? null : $this->request->getPost('chavePix')
+            ],
             'perfil' => strtoupper($this->request->getPost('perfil'))
         ];
     }
+
+
+    private function formatarData(?string $data): ?string
+    {
+        if (!$data) {
+            return null;
+        }
+
+        $dataFormatada = DateTime::createFromFormat('Y-m-d', $data);
+
+        return $dataFormatada ? $dataFormatada->format('d/m/Y') : null;
+    }
+
+
+    public function deleteUser($userId)
+    {
+        if ($this->request->getPost('_method') !== 'DELETE') {
+            return redirect()->back()->with('error', 'Método não permitido!');
+        }
+
+        $this->userService->deleteUser($userId, $this->getToken());
+        return redirect()->to('/user_list');
+    }
+
 
 
     private function getToken()

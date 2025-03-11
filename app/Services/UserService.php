@@ -45,6 +45,12 @@ class UserService
     }
 
 
+    public function deleteUser($userId, $token): void
+    {
+        $this->sendRequest('DELETE', $this->apiUrlUser . $userId, [], $token);
+    }
+
+
     private function sendRequest($method, $url, $data = [], $token = null)
     {
         $ch = curl_init();
@@ -102,6 +108,13 @@ class UserService
             case 'PUT':
                 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
                 curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+                break;
+
+            case 'DELETE':
+                curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
+                if (!empty($data)) {
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+                }
                 break;
 
             case 'GET':
