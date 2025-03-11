@@ -19,59 +19,59 @@
             <div class="form-container">
                 <form action="<?= base_url('register_user') ?>" method="POST">
                     <label for="email">E-mail</label>
-                    <input type="email" id="email" name="email" required>
+                    <input type="email" id="email" name="email">
 
                     <label for="senha">Senha</label>
-                    <input type="password" id="senha" name="senha" required>
+                    <input type="password" id="senha" name="senha">
 
                     <label for="cpf">CPF</label>
-                    <input type="text" id="cpf" name="cpf" required>
+                    <input type="text" id="cpf" name="cpf">
 
                     <label for="nomeCompleto">Nome Completo</label>
-                    <input type="text" id="nomeCompleto" name="nomeCompleto" required>
+                    <input type="text" id="nomeCompleto" name="nomeCompleto">
 
                     <label for="dataNascimento">Data de Nascimento</label>
-                    <input type="date" id="dataNascimento" name="dataNascimento" required>
+                    <input type="date" id="dataNascimento" name="dataNascimento">
 
                     <label for="telefone">Telefone</label>
-                    <input type="text" id="telefone" name="telefone" required>
+                    <input type="text" id="telefone" name="telefone">
 
                     <label for="logradouro">Logradouro</label>
-                    <input type="text" id="logradouro" name="logradouro" required>
+                    <input type="text" id="logradouro" name="logradouro">
 
                     <label for="numero">Número</label>
-                    <input type="text" id="numero" name="numero" required>
+                    <input type="text" id="numero" name="numero">
 
                     <label for="bairro">Bairro</label>
-                    <input type="text" id="bairro" name="bairro" required>
+                    <input type="text" id="bairro" name="bairro">
 
                     <label for="cep">CEP</label>
-                    <input type="text" id="cep" name="cep" required>
+                    <input type="text" id="cep" name="cep">
 
                     <label for="cidade">Cidade</label>
-                    <input type="text" id="cidade" name="cidade" required>
+                    <input type="text" id="cidade" name="cidade">
 
                     <label for="estado">Estado</label>
-                    <select id="estado" name="estado" required>
+                    <select id="estado" name="estado">
                         <?php foreach ($estados as $estado): ?>
                             <option value="<?= $estado->value ?>"><?= $estado->value ?></option>
                         <?php endforeach; ?>
                     </select>
 
                     <label for="banco">Banco</label>
-                    <input type="text" id="banco" name="banco" required>
+                    <input type="text" id="banco" name="banco">
 
                     <label for="conta">Conta</label>
-                    <input type="text" id="conta" name="conta" required>
+                    <input type="text" id="conta" name="conta">
 
                     <label for="agencia">Agência</label>
-                    <input type="text" id="agencia" name="agencia" required>
+                    <input type="text" id="agencia" name="agencia">
 
                     <label for="chavePix">Chave Pix</label>
-                    <input type="text" id="chavePix" name="chavePix" required>
+                    <input type="text" id="chavePix" name="chavePix">
 
                     <label for="perfil">Perfil</label>
-                    <select id="perfil" name="perfil" required>
+                    <select id="perfil" name="perfil">
                         <option value="ADMINISTRADOR">ADMINISTRADOR</option>
                         <option value="COMERCIAL">COMERCIAL</option>
                         <option value="PROJETOS">PROJETOS</option>
