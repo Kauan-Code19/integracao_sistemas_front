@@ -1,13 +1,13 @@
 /* ---- ESTILOS GERAIS ---- */
 .container {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    padding: 5rem 3rem;
-    background: #444444;
     overflow: hidden;
     font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    padding: 5rem 3rem;
+    align-items: center;
+    justify-content: center;
+    background:  #444444;
 }
 
 .edicao {
@@ -15,21 +15,16 @@
     background: #303030;
     color: white;
     display: flex;
+    overflow: hidden;
+    padding: 2rem 3rem;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 2rem 3rem;
     border-radius: 12px;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
 }
 
-/* ---- FORMULÁRIO ---- */
-.form-container {
-    width: 100%;
-}
-
-form {
+.details-container {
     width: 100%;
 }
 
@@ -39,7 +34,16 @@ form {
     gap: 10px;
 }
 
-.info-pessoais, .endereco {
+.info-pessoais {
+    grid-template-columns: repeat(3, minmax(200px, 1fr));
+    margin-top: 12px;
+}
+
+.group-pessoais:nth-child(1) {
+    grid-column: span 2;
+}
+
+.endereco {
     grid-template-columns: repeat(3, minmax(200px, 1fr));
     margin-top: 12px;
 }
@@ -54,9 +58,23 @@ form {
     margin-top: 12px;
 }
 
+.acoes {
+    grid-template-columns: repeat(2, minmax(200px, 1fr));
+    margin-top: 12px;
+    justify-content: space-around;
+    align-items: center;
+}
+
 .form-group {
     display: flex;
     flex-direction: column;
+    padding: 4px;
+}
+
+.form-group-acoes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 4px;
 }
 
@@ -68,38 +86,69 @@ h3 {
     padding-bottom: 5px;
 }
 
+/* ---- CAMPOS DE ENTRADA ---- */
 input {
     width: 100%;
     padding: 10px;
     margin: 8px 0;
+    border: none;
     background-color: #e2e2e2;
     border-radius: 5px;
-    border: none;
 }
 
 select {
+    background-color: #e2e2e2;
     width: 100%;
     padding: 8px;
     margin: 8px 0;
-    background-color: #e2e2e2;
     border: 1px solid #7c7c7c;
     border-radius: 4px;
 }
 
 /* ---- BOTÕES ---- */
-.btnEditar {
+.buttonEditar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
+    min-width: 444px;
     padding: 10px;
-    background: #1d1d1d;
-    color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 12px;
+    text-align: center;
+    background: #1d1d1d;
+    color: white;
+    text-decoration: none;
 }
 
-.btnEditar:hover {
+.buttonEditar:hover {
     background: #070707;
+}
+
+.btn-deletar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-width: 444px;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+}
+
+.btn-deletar {
+    background: #E74C3C;
+    border-radius: 6px;
+    color: white;
+    line-height: 1.5;
+    margin-bottom: 2px;
+    font-size: 15px;
+}
+
+.btn-deletar:hover {
+    background: #A71D2A;
 }
 
 /* ---- COMPONENTES ESPECÍFICOS ---- */
@@ -147,7 +196,7 @@ select {
         margin-top: 8px;
     }
 
-    .btnEditar {
+    .buttonEditar {
         height: 14%;
     }
 }

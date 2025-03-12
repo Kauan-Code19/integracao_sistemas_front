@@ -1,52 +1,43 @@
+/* ---- ESTILOS GERAIS ---- */
 .container {
     display: flex;
-    font-family: 'Poppins', sans-serif;
-    height: 100vh;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
-    background:  #444444;
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    padding: 5rem 3rem;
+    overflow-x: hidden;
+    background: #444444;
 }
 
 .listagem {
     display: flex;
-    overflow: hidden;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 80%;
+    width: 90%;
     padding: 2rem 3rem;
     min-height: 500px;
     background: #303030;
     color: white;
     border-radius: 12px;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
 }
 
-.table-container {
-    width: 100%;
-    overflow-y: auto;
-}
-
+/* ---- TEXTOS ---- */
 h2 {
     margin-bottom: 1rem;
+}
+
+/* ---- TABELA ---- */
+.table-container {
+    width: 100%;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-}
-
-th, td {
-    border: 1px solid #7c7c7c;
-    padding: 10px;
-    text-align: center;
-    white-space: nowrap;
-    overflow: hidden;
-}
-
-th {
-    background-color: #848484; 
 }
 
 tr:nth-child(even) {
@@ -57,33 +48,72 @@ tr:hover {
     background-color: #070707;
 }
 
+th {
+    background-color: #848484;
+}
+
+th, td {
+    border: 1px solid #7c7c7c;
+    padding: 10px;
+    text-align: center;
+}
+
+td {
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+/* ---- COLUNAS ESPECÍFICAS ---- */
+td.email {
+    min-width: 300px;
+}
+
+td.nome-completo {
+    max-width: 40px;
+}
+
+td.perfil {
+    min-width: 100px;
+}
+
+td.acoes {
+    min-width: 200px;
+}
+
+/* ---- BOTÕES ---- */
 .btn-editar i {
-    color: #007bff;
+    color: #4A90E2;
     font-size: 18px;
     margin-right: 10px;
 }
 
-.btn-deletar {
+.btn-editar:hover i {
+    color: #0056b3;
+}
+
+.btn-detalhes {
     background: none;
     border: none;
-    padding: 0;
-    cursor: pointer; 
+    color: #00BCD4;
+    transition: color 0.5s ease-in-out;
+    position: relative;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: none;
 }
 
-.btn-deletar i {
-    color: #dc3545; 
-    font-size: 18px;
+.btn-detalhes i {
+    margin-right: 5px;
 }
 
-.btn-editar:hover i {
-    color: #0056b3; 
+.btn-detalhes:hover::after {
+    content: " Ver Detalhes";
+    font-size: 14px;
+    margin-left: 5px;
+    color: #008C9E;
 }
 
-.btn-deletar:hover i {
-    color: #a71d2a;
-}
-
-.buttonCadastrar {
+.btn-cadastrar {
     width: 100%;
     padding: 10px;
     margin-top: 20px;
@@ -95,8 +125,39 @@ tr:hover {
     text-align: center;
 }
 
-.buttonCadastrar:hover {
+.btn-cadastrar:hover {
     background: #070707;
+}
+
+/* ---- MEDIA QUERIES ---- */
+@media (max-width: 932px) and (orientation: landscape) {
+    .listagem {
+        height: auto;
+        min-height: auto;
+        max-height: 350px;
+    }
+
+    .table-container {
+        max-height: 55vh;
+        overflow-y: auto;
+    }
+
+    table {
+        border-collapse: collapse;
+    }
+
+    td.email,
+    td.nome-completo,
+    td.perfil,
+    td.acoes {
+        min-width: unset;
+        max-width: unset;
+    }
+
+    .btn-cadastrar {
+        margin-top: 10px;
+        flex-shrink: 0;
+    }
 }
 
 @media (max-width: 768px) {
@@ -107,41 +168,5 @@ tr:hover {
     .table-container {
         width: 100%;
         overflow-x: auto;
-    }
-}
-
-@media (max-width: 932px) and (orientation: landscape) {
-    .container {
-        overflow: hidden;
-    }
-
-    .listagem {
-        height: auto;
-        min-height: auto;
-        max-height: 350px;
-        overflow: hidden;
-    }
-
-    .table-container {
-        width: 100%;
-        max-height: 55vh;
-        overflow-y: auto;
-    }
-
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-    .buttonCadastrar {
-        background: royalblue;
-        color: white;
-        text-align: center;
-        margin-top: 10px;
-        flex-shrink: 0; 
-    }
-
-    .buttonCadastrar:hover {
-        background: darkblue;
     }
 }

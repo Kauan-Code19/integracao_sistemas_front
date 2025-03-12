@@ -21,21 +21,8 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Email</th>
-                            <th>CPF</th>
-                            <th>Nome Completo</th>
-                            <th>Data de Nascimento</th>
-                            <th>Telefone</th>
-                            <th>Logradouro</th>
-                            <th>Número</th>
-                            <th>Bairro</th>
-                            <th>CEP</th>
-                            <th>Cidade</th>
-                            <th>Estado</th>
-                            <th>Banco</th>
-                            <th>Agencia</th>
-                            <th>Conta</th>
-                            <th>Chave Pix</th>
+                            <th class="email">Email</th>
+                            <th class="nome-completo">Nome Completo</th>
                             <th>Perfil</th>
                             <th>Ações</th>
                         </tr>
@@ -44,32 +31,16 @@
                         <?php if (!empty($usuarios)) : ?>
                             <?php foreach ($usuarios as $usuario) : ?>
                                 <tr>
-                                    <td><?= esc($usuario['email']) ?></td>
-                                    <td><?= esc($usuario['cpf']) ?></td>
-                                    <td><?= esc($usuario['nomeCompleto']) ?></td>
-                                    <td><?= esc(date('d/m/Y', strtotime($usuario['dataNascimento']))) ?></td>
-                                    <td><?= esc($usuario['telefone']) ?></td>
-                                    <td><?= esc($usuario['endereco']['logradouro']) ?></td>
-                                    <td><?= esc($usuario['endereco']['numero']) ?></td>
-                                    <td><?= esc($usuario['endereco']['bairro']) ?></td>
-                                    <td><?= esc($usuario['endereco']['cep']) ?></td>
-                                    <td><?= esc($usuario['endereco']['cidade']) ?></td>
-                                    <td><?= esc($usuario['endereco']['estado']) ?></td>
-                                    <td><?= esc($usuario['dadosBancarios']['banco']) ?></td>
-                                    <td><?= esc($usuario['dadosBancarios']['agencia']) ?></td>
-                                    <td><?= esc($usuario['dadosBancarios']['conta']) ?></td>
-                                    <td><?= esc($usuario['dadosBancarios']['chavePix']) ?></td>
-                                    <td><?= esc($usuario['perfil']) ?></td>
-                                    <td>
+                                    <td class="email"><?= esc($usuario['email']) ?></td>
+                                    <td class="nome-completo"><?= esc($usuario['nomeCompleto']) ?></td>
+                                    <td class="perfil"><?= esc($usuario['perfil']) ?></td>
+                                    <td class="acoes">
                                         <a href="<?= base_url('user_edit/' . $usuario['id']) ?>" class="btn-editar">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        <form action="<?= base_url('delete_user/' . $usuario['id']) ?>" method="POST" style="display:inline;" onsubmit="return confirm('Tem certeza que deseja excluir este usuário?');">
-                                            <input type="hidden" name="_method" value="DELETE">
-                                            <button type="submit" class="btn-deletar">
-                                                <i class="fas fa-trash-alt"></i>
-                                            </button>
-                                        </form>
+                                        <a href="<?= base_url('user_details/' . $usuario['id']) ?>" class="btn-detalhes">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -81,7 +52,7 @@
                     </tbody>
                 </table>
             </div>
-            <a href="<?= base_url('user_registration') ?>" class="buttonCadastrar">Cadastrar Novo Usuário</a>
+            <a href="<?= base_url('user_registration') ?>" class="btn-cadastrar">Cadastrar Novo Usuário</a>
         </div>
     </div>
 </body>

@@ -1,36 +1,86 @@
+/* ---- ESTILOS GERAIS ---- */
 .container {
     display: flex;
-    overflow: hidden;
-    font-family: 'Poppins', sans-serif;
-    height: 100vh;
     align-items: center;
     justify-content: center;
-    background:  #444444;
+    overflow: hidden;
+    min-height: 100vh;
+    padding: 5rem 3rem;
+    font-family: 'Poppins', sans-serif;
+    background: #444444;
 }
 
 .cadastro {
-    width: 80%;
-    padding: 2rem;
-    max-height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    padding: 2rem 3rem;
     background: #303030;
     color: white;
-    display: flex;
-    overflow: hidden;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     border-radius: 12px;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+/* ---- COMPONENTES ESPECÍFICOS ---- */
+.error-message {
+    width: 100%;
+    max-width: 300px;
+    padding: 10px;
+    margin-bottom: 15px;
+    background: #ff4d4d;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(255, 77, 77, 0.5);
+    animation: fadeIn 0.3s ease-in-out;
 }
 
 .form-container {
     width: 100%;
-    overflow-y: auto;
 }
 
 form {
-    padding: 10px;
-    overflow-y: auto;
+    width: 100%;
+}
+
+/* ---- LAYOUT E GRIDS ---- */
+.grid-container {
+    display: grid;
+    gap: 10px;
+}
+
+.info-pessoais, 
+.endereco {
+    grid-template-columns: repeat(3, minmax(200px, 1fr));
+    margin-top: 12px;
+}
+
+.dados-bancarios {
+    grid-template-columns: repeat(4, minmax(200px, 1fr));
+    margin-top: 12px;
+}
+
+.acesso {
+    grid-template-columns: repeat(1, minmax(200px, 1fr));
+    margin-top: 12px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    padding: 4px;
+}
+
+/* ---- ELEMENTOS INDIVIDUAIS ---- */
+h3 {
+    text-align: center;
+    margin-top: 30px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #ccc;
 }
 
 input {
@@ -43,12 +93,19 @@ input {
 }
 
 select {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+    border: 1px solid #7c7c7c;
     background-color: #e2e2e2;
+    border-radius: 4px;
 }
 
-.buttonRegistrar {
+/* ---- BOTÃO ---- */
+.btn-Registrar {
     width: 100%;
     padding: 10px;
+    margin-top: 12px;
     background: #1d1d1d;
     color: white;
     border: none;
@@ -56,24 +113,11 @@ select {
     cursor: pointer;
 }
 
-.buttonRegistrar:hover {
+.btn-Registrar:hover {
     background: #070707;
 }
 
-.error-message {
-    width: 100%;
-    max-width: 300px;
-    background: #ff4d4d;
-    color: white;
-    padding: 10px;
-    margin-bottom: 15px;
-    border-radius: 5px;
-    text-align: center;
-    font-weight: bold;
-    box-shadow: 0px 0px 10px rgba(255, 77, 77, 0.5);
-    animation: fadeIn 0.3s ease-in-out;
-}
-
+/* ---- ANIMAÇÕES ---- */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -85,20 +129,7 @@ select {
     }
 }
 
-select {
-    width: 100%;
-    padding: 8px;
-    margin: 8px 0;
-    border: 1px solid #7c7c7c;
-    border-radius: 4px;
-}
-
-@media (max-width: 768px) {
-    .cadastro {
-        width: 70%;
-    }
-}
-
+/* ---- MEDIA QUERIES ---- */
 @media (max-width: 882px) and (orientation: landscape) {
     .cadastro {
         height: 95%;
@@ -110,8 +141,14 @@ select {
         margin-top: 8px;
     }
 
-    .buttonRegistrar {
+    .btn-Registrar {
         height: 14%;
+    }
+}
+
+@media (max-width: 768px) {
+    .cadastro {
+        width: 70%;
     }
 }
 

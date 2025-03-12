@@ -18,66 +18,95 @@
             <h2>Cadastro de Usuário</h2>
             <div class="form-container">
                 <form action="<?= base_url('register_user') ?>" method="POST">
-                    <label for="email">E-mail</label>
-                    <input type="email" id="email" name="email">
+                    <h3>Informações Pessoais</h3>
+                    <div class="grid-container info-pessoais">
+                        <div class="form-group">
+                            <label for="nomeCompleto">Nome Completo</label>
+                            <input type="text" id="nomeCompleto" name="nomeCompleto">
+                        </div>
+                        <div class="form-group">
+                            <label for="cpf">CPF</label>
+                            <input type="text" id="cpf" name="cpf">
+                        </div>
+                        <div class="form-group">
+                            <label for="dataNascimento">Data de Nascimento</label>
+                            <input type="date" id="dataNascimento" name="dataNascimento">
+                        </div>
+                        <div class="form-group">
+                            <label for="telefone">Telefone</label>
+                            <input type="text" id="telefone" name="telefone">
+                        </div>
+                        <div class=" form-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" id="email" name="email">
+                        </div>
+                        <div class=" form-group">
+                            <label for="senha">Senha</label>
+                            <input type="password" id="senha" name="senha">
+                        </div>
+                    </div>
 
-                    <label for="senha">Senha</label>
-                    <input type="password" id="senha" name="senha">
+                    <h3>Endereço</h3>
+                    <div class="grid-container endereco">
+                        <div class="form-group">
+                            <label for="logradouro">Logradouro</label>
+                            <input type="text" id="logradouro" name="logradouro">
+                        </div>
+                        <div class="form-group">
+                            <label for="numero">Número</label>
+                            <input type="text" id="numero" name="numero">
+                        </div>
+                        <div class="form-group">
+                            <label for="bairro">Bairro</label>
+                            <input type="text" id="bairro" name="bairro">
+                        </div>
+                        <div class="form-group">
+                            <label for="cep">CEP</label>
+                            <input type="text" id="cep" name="cep" val>
+                        </div>
+                        <div class="form-group">
+                            <label for="cidade">Cidade</label>
+                            <input type="text" id="cidade" name="cidade">
+                        </div>
+                        <div class="form-group">
+                            <label for="estado">Estado</label>
+                            <input type="text" id="estado" name="estado">
+                        </div>
+                    </div>
 
-                    <label for="cpf">CPF</label>
-                    <input type="text" id="cpf" name="cpf">
+                    <h3>Dados Bancários</h3>
+                    <div class="grid-container dados-bancarios">
+                        <div class="form-group">
+                            <label for="banco">Banco</label>
+                            <input type="text" id="banco" name="banco">
+                        </div>
+                        <div class="form-group">
+                            <label for="conta">Conta</label>
+                            <input type="text" id="conta" name="conta">
+                        </div>
+                        <div class="form-group">
+                            <label for="agencia">Agência</label>
+                            <input type="text" id="agencia" name="agencia">
+                        </div>
+                        <div class="form-group">
+                            <label for="chavePix">Chave Pix</label>
+                            <input type="text" id="chavePix" name="chavePix">
+                        </div>
+                    </div>
 
-                    <label for="nomeCompleto">Nome Completo</label>
-                    <input type="text" id="nomeCompleto" name="nomeCompleto">
+                    <h3>Acesso</h3>
+                    <div class="grid-container acesso">
+                        <div class="form-group">
+                            <label for="perfil">Perfil</label>
+                            <select id="perfil" name="perfil">
+                                <option value="ADMINISTRADOR">ADMINISTRADOR</option>
+                                <option value="COMERCIAL">COMERCIAL</option>
+                                <option value="PROJETOS">PROJETOS</option>
+                            </select>
+                        </div>
+                    </div>
 
-                    <label for="dataNascimento">Data de Nascimento</label>
-                    <input type="date" id="dataNascimento" name="dataNascimento">
-
-                    <label for="telefone">Telefone</label>
-                    <input type="text" id="telefone" name="telefone">
-
-                    <label for="logradouro">Logradouro</label>
-                    <input type="text" id="logradouro" name="logradouro">
-
-                    <label for="numero">Número</label>
-                    <input type="text" id="numero" name="numero">
-
-                    <label for="bairro">Bairro</label>
-                    <input type="text" id="bairro" name="bairro">
-
-                    <label for="cep">CEP</label>
-                    <input type="text" id="cep" name="cep">
-
-                    <label for="cidade">Cidade</label>
-                    <input type="text" id="cidade" name="cidade">
-
-                    <label for="estado">Estado</label>
-                    <select id="estado" name="estado">
-                        <?php foreach ($estados as $estado): ?>
-                            <option value="<?= $estado->value ?>"><?= $estado->value ?></option>
-                        <?php endforeach; ?>
-                    </select>
-
-                    <label for="banco">Banco</label>
-                    <input type="text" id="banco" name="banco">
-
-                    <label for="conta">Conta</label>
-                    <input type="text" id="conta" name="conta">
-
-                    <label for="agencia">Agência</label>
-                    <input type="text" id="agencia" name="agencia">
-
-                    <label for="chavePix">Chave Pix</label>
-                    <input type="text" id="chavePix" name="chavePix">
-
-                    <label for="perfil">Perfil</label>
-                    <select id="perfil" name="perfil">
-                        <option value="ADMINISTRADOR">ADMINISTRADOR</option>
-                        <option value="COMERCIAL">COMERCIAL</option>
-                        <option value="PROJETOS">PROJETOS</option>
-                    </select>
-
-                    <button type="submit" class="buttonRegistrar">Registrar</button>
+                    <button type="submit" class="btn-Registrar">Cadastrar</button>
                 </form>
             </div>
         </div>

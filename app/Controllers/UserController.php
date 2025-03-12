@@ -48,6 +48,22 @@ class UserController extends BaseController
     }
 
 
+    public function userDetailsView($userId)
+    {
+        $token = $this->getToken();
+        $response =  $this->userService->returnUser($userId, $token);
+
+        if ($this->isHttpStatusFailed($response['status'], HTTP_OK)) {
+            return $this->redirectBackWithError($response);
+        }
+
+        return view('templates/main', [
+            'titulo' => 'Detalhes de Usuário',
+            'conteudo' => view('usuario/user_details', ['usuario' => $response['body']])
+        ]);
+    }
+
+
     public function editUser()
     {
         if ($this->request->getPost('_method') !== 'PUT') {
