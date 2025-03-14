@@ -102,17 +102,30 @@
                         <a href="<?= base_url('user_edit/' . esc($usuario['id'])) ?>" class="buttonEditar">Editar Usuário</a>
                     </div>
                     <div class="form-group">
-                        <form action="<?= base_url('delete_user/' . $usuario['id']) ?>" method="POST" style="display:inline;" onsubmit="return confirm('Tem certeza que deseja excluir este usuário?');">
+                        <form action="<?= base_url('delete_user/' . esc($usuario['id'])) ?>" method="POST" class="form-deletar">
                             <input type="hidden" name="_method" value="DELETE">
-                            <button type="submit" class="btn-deletar">
+                            <button type="button" class="btn-deletar" onclick="mostrarModal()">
                                 Deletar
                             </button>
                         </form>
+                    </div>
+
+                    <div id="modalConfirmacao" class="modal">
+                        <div class="modal-content">
+                            <h2>Confirmação</h2>
+                            <p>Tem certeza que deseja excluir este usuário?</p>
+                            <div class="modal-buttons">
+                                <button onclick="fecharModal()">Cancelar</button>
+                                <button id="confirmarExclusao">Excluir</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script src="<?= base_url('assets/js/usuario/user_details.js') ?>"></script>
 </body>
 
 </html>

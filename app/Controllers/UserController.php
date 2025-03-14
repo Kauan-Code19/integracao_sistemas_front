@@ -9,9 +9,11 @@ use App\Services\UserService;
 class UserController extends BaseController
 {
     private $userService;
+    private $estados;
 
     public function __construct()
     {
+        $this->estados = Estado::cases();
         $this->userService = new UserService();
     }
 
@@ -43,7 +45,13 @@ class UserController extends BaseController
 
         return view('templates/main', [
             'titulo' => 'Edição de Usuário',
-            'conteudo' => view('usuario/user_edit', ['usuario' => $response['body']])
+            'conteudo' => view(
+                'usuario/user_edit',
+                [
+                    'usuario' => $response['body'],
+                    'estados' => $this->estados
+                ]
+            )
         ]);
     }
 
@@ -92,25 +100,25 @@ class UserController extends BaseController
     private function getUserEditData(): array
     {
         return [
-            'email' => empty($this->request->getPost('email')) ? null : $this->request->getPost('email'),
-            'senha' => empty($this->request->getPost('senha')) ? null : $this->request->getPost('senha'),
-            'cpf' => empty($this->request->getPost('cpf')) ? null : $this->request->getPost('cpf'),
-            'nomeCompleto' => empty($this->request->getPost('nomeCompleto')) ? null : $this->request->getPost('nomeCompleto'),
+            'email' => trim($this->request->getPost('email')) === "" ? null : $this->request->getPost('email'),
+            'senha' => trim($this->request->getPost('senha')) === "" ? null : $this->request->getPost('senha'),
+            'cpf' => trim($this->request->getPost('cpf')) === "" ? null : $this->request->getPost('cpf'),
+            'nomeCompleto' => trim($this->request->getPost('nomeCompleto')) === "" ? null : $this->request->getPost('nomeCompleto'),
             'dataNascimento' => $this->formatarData($this->request->getPost('dataNascimento')),
-            'telefone' => empty($this->request->getPost('telefone')) ? null : $this->request->getPost('telefone'),
+            'telefone' => trim($this->request->getPost('telefone')) === "" ? null : $this->request->getPost('telefone'),
             'endereco' => [
-                'logradouro' => empty($this->request->getPost('logradouro')) ? null : $this->request->getPost('logradouro'),
-                'numero' => empty($this->request->getPost('numero')) ? null : $this->request->getPost('numero'),
-                'bairro' => empty($this->request->getPost('bairro')) ? null : $this->request->getPost('bairro'),
-                'cep' => empty($this->request->getPost('cep')) ? null : $this->request->getPost('cep'),
-                'cidade' => empty($this->request->getPost('cidade')) ? null : $this->request->getPost('cidade'),
-                'estado' => empty($this->request->getPost('estado')) ? null : $this->request->getPost('estado')
+                'logradouro' => trim($this->request->getPost('logradouro')) === "" ? null : $this->request->getPost('logradouro'),
+                'numero' => trim($this->request->getPost('numero')) === "" ? null : $this->request->getPost('numero'),
+                'bairro' => trim($this->request->getPost('bairro')) === "" ? null : $this->request->getPost('bairro'),
+                'cep' => trim($this->request->getPost('cep')) === "" ? null : $this->request->getPost('cep'),
+                'cidade' => trim($this->request->getPost('cidade')) === "" ? null : $this->request->getPost('cidade'),
+                'estado' => trim($this->request->getPost('estado')) === "" ? null : $this->request->getPost('estado')
             ],
             'dadosBancarios' => [
-                'banco' => empty($this->request->getPost('banco')) ? null : $this->request->getPost('banco'),
-                'conta' => empty($this->request->getPost('conta')) ? null : $this->request->getPost('conta'),
-                'agencia' => empty($this->request->getPost('agencia')) ? null : $this->request->getPost('agencia'),
-                'chavePix' => empty($this->request->getPost('chavePix')) ? null : $this->request->getPost('chavePix')
+                'banco' => trim($this->request->getPost('banco')) === "" ? null : $this->request->getPost('banco'),
+                'conta' => trim($this->request->getPost('conta')) === "" ? null : $this->request->getPost('conta'),
+                'agencia' => trim($this->request->getPost('agencia')) === "" ? null : $this->request->getPost('agencia'),
+                'chavePix' => trim($this->request->getPost('chavePix')) === "" ? null : $this->request->getPost('chavePix')
             ],
             'perfil' => strtoupper($this->request->getPost('perfil'))
         ];
@@ -119,10 +127,9 @@ class UserController extends BaseController
 
     public function userRegistrationView()
     {
-        $estados = Estado::cases();
         return view('templates/main', [
             'titulo' => 'Cadastro de Usuário',
-            'conteudo' => view('usuario/user_registration', ['estados' => $estados])
+            'conteudo' => view('usuario/user_registration', ['estados' => $this->estados])
         ]);
     }
 
@@ -144,25 +151,25 @@ class UserController extends BaseController
     private function getUserRegistrationData(): array
     {
         return [
-            'email' => empty($this->request->getPost('email')) ? null : $this->request->getPost('email'),
-            'senha' => empty($this->request->getPost('senha')) ? null : $this->request->getPost('senha'),
-            'cpf' => empty($this->request->getPost('cpf')) ? null : $this->request->getPost('cpf'),
-            'nomeCompleto' => empty($this->request->getPost('nomeCompleto')) ? null : $this->request->getPost('nomeCompleto'),
+            'email' => trim($this->request->getPost('email')) === "" ? null : $this->request->getPost('email'),
+            'senha' => trim($this->request->getPost('senha')) === "" ? null : $this->request->getPost('senha'),
+            'cpf' => trim($this->request->getPost('cpf')) === "" ? null : $this->request->getPost('cpf'),
+            'nomeCompleto' => trim($this->request->getPost('nomeCompleto')) === "" ? null : $this->request->getPost('nomeCompleto'),
             'dataNascimento' => $this->formatarData($this->request->getPost('dataNascimento')),
-            'telefone' => empty($this->request->getPost('telefone')) ? null : $this->request->getPost('telefone'),
+            'telefone' => trim($this->request->getPost('telefone')) === "" ? null : $this->request->getPost('telefone'),
             'endereco' => [
-                'logradouro' => empty($this->request->getPost('logradouro')) ? null : $this->request->getPost('logradouro'),
-                'numero' => empty($this->request->getPost('numero')) ? null : $this->request->getPost('numero'),
-                'bairro' => empty($this->request->getPost('bairro')) ? null : $this->request->getPost('bairro'),
-                'cep' => empty($this->request->getPost('cep')) ? null : $this->request->getPost('cep'),
-                'cidade' => empty($this->request->getPost('cidade')) ? null : $this->request->getPost('cidade'),
-                'estado' => empty($this->request->getPost('estado')) ? null : $this->request->getPost('estado')
+                'logradouro' => trim($this->request->getPost('logradouro')) === "" ? null : $this->request->getPost('logradouro'),
+                'numero' => trim($this->request->getPost('numero')) === "" ? null : $this->request->getPost('numero'),
+                'bairro' => trim($this->request->getPost('bairro')) === "" ? null : $this->request->getPost('bairro'),
+                'cep' => trim($this->request->getPost('cep')) === "" ? null : $this->request->getPost('cep'),
+                'cidade' => trim($this->request->getPost('cidade')) === "" ? null : $this->request->getPost('cidade'),
+                'estado' => trim($this->request->getPost('estado')) === "" ? null : $this->request->getPost('estado')
             ],
             'dadosBancarios' => [
-                'banco' => empty($this->request->getPost('banco')) ? null : $this->request->getPost('banco'),
-                'conta' => empty($this->request->getPost('conta')) ? null : $this->request->getPost('conta'),
-                'agencia' => empty($this->request->getPost('agencia')) ? null : $this->request->getPost('agencia'),
-                'chavePix' => empty($this->request->getPost('chavePix')) ? null : $this->request->getPost('chavePix')
+                'banco' => trim($this->request->getPost('banco')) === "" ? null : $this->request->getPost('banco'),
+                'conta' => trim($this->request->getPost('conta')) === "" ? null : $this->request->getPost('conta'),
+                'agencia' => trim($this->request->getPost('agencia')) === "" ? null : $this->request->getPost('agencia'),
+                'chavePix' => trim($this->request->getPost('chavePix')) === "" ? null : $this->request->getPost('chavePix')
             ],
             'perfil' => strtoupper($this->request->getPost('perfil'))
         ];
@@ -209,6 +216,6 @@ class UserController extends BaseController
     {
         $errorMessage = isset($response['body']['error']) ? $response['body']['error']
             : 'Erro ao se conectar com o servidor.';
-        return redirect()->back()->with('error', $errorMessage);
+        return redirect()->back()->with('error', $errorMessage)->withInput();
     }
 }
