@@ -1,0 +1,172 @@
+/* ---- ESTILOS GERAIS ---- */
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    padding: 5rem 3rem;
+    overflow-x: hidden;
+    background: #444444;
+}
+
+.listagem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    padding: 2rem 3rem;
+    min-height: 500px;
+    background: #303030;
+    color: white;
+    border-radius: 12px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+/* ---- TEXTOS ---- */
+h2 {
+    margin-bottom: 1rem;
+}
+
+/* ---- TABELA ---- */
+.table-container {
+    width: 100%;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+tr:nth-child(even) {
+    background-color: #626262;
+}
+
+tr:hover {
+    background-color: #070707;
+}
+
+th {
+    background-color: #848484;
+}
+
+th, td {
+    border: 1px solid #7c7c7c;
+    padding: 10px;
+    text-align: center;
+}
+
+td {
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+/* ---- COLUNAS ESPECÍFICAS ---- */
+td.email {
+    min-width: 300px;
+}
+
+td.nome-completo {
+    max-width: 40px;
+}
+
+td.perfil {
+    min-width: 100px;
+}
+
+td.acoes {
+    min-width: 200px;
+}
+
+/* ---- BOTÕES ---- */
+.btn-editar i {
+    color: #4A90E2;
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+.btn-editar:hover i {
+    color: #0056b3;
+}
+
+.btn-detalhes {
+    background: none;
+    border: none;
+    color: #00BCD4;
+    transition: color 0.5s ease-in-out;
+    position: relative;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn-detalhes i {
+    margin-right: 5px;
+}
+
+.btn-detalhes:hover::after {
+    content: " Ver Detalhes";
+    font-size: 14px;
+    margin-left: 5px;
+    color: #008C9E;
+}
+
+.btn-cadastrar {
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    background: #1d1d1d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.btn-cadastrar:hover {
+    background: #070707;
+}
+
+/* ---- MEDIA QUERIES ---- */
+@media (max-width: 932px) and (orientation: landscape) {
+    .listagem {
+        height: auto;
+        min-height: auto;
+        max-height: 350px;
+    }
+
+    .table-container {
+        max-height: 55vh;
+        overflow-y: auto;
+    }
+
+    table {
+        border-collapse: collapse;
+    }
+
+    td.email,
+    td.nome-completo,
+    td.perfil,
+    td.acoes {
+        min-width: unset;
+        max-width: unset;
+    }
+
+    .btn-cadastrar {
+        margin-top: 10px;
+        flex-shrink: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .listagem {
+        width: 95%;
+    }
+
+    .table-container {
+        width: 100%;
+        overflow-x: auto;
+    }
+}

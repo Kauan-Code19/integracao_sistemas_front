@@ -1,0 +1,128 @@
+.container {
+    display: flex;
+    height: 100vh;
+    font-family: 'Poppins', sans-serif;
+}
+
+.login {
+    width: 40%;
+    background: #0a0a0a;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.error-message {
+    width: 100%;
+    max-width: 300px;
+    background: #ff4d4d;
+    color: white;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    box-shadow: 0px 0px 10px rgba(255, 77, 77, 0.5);
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+form {
+    width: 100%;
+    max-width: 300px;
+    padding: 8px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 5px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background: royalblue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: darkblue;
+}
+
+.imagem {
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #1a1a1a;
+}
+
+.imagem img {
+    max-width: 80%;
+    height: auto;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: #1a1a1a;
+    }
+
+    .imagem {
+        display: none;
+    }
+
+    .login {
+        width: 60%;
+        height: 55%;
+        padding: 2rem;
+        max-height: 400px;
+        background: #0a0a0a;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    form {
+        max-width: 400px;
+    }
+}
+
+@media (max-width: 640px) {
+    .login {
+        height: 70%;
+        width: 75%;
+    }
+}
+
+@media (max-width: 768px) and (orientation: landscape) {
+    .login {
+        height: 90%;
+        width: 75%;
+    }
+}

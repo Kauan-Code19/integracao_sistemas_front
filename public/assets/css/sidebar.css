@@ -1,0 +1,45 @@
+.sidebar {
+    width: 250px;
+    height: 100%;
+    position: fixed; 
+    top: 0;
+    left: -250px;
+    background-color: #3c3c3c;
+    padding-top: 20px;
+    transition: left 0.3s;
+    font-family: 'Poppins', sans-serif;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 24px;
+}
+
+.sidebar ul li {
+    padding: 10px;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+.sidebar ul li:hover {
+    background-color: #070707;
+    cursor: pointer;
+}
+
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+#menu-icon {
+    font-size: 30px;
+    position: fixed;
+    top: 8px;
+    left: 18px;
+    background: none;
+    border: none;
+    color: #070707;
+    cursor: pointer;
+}

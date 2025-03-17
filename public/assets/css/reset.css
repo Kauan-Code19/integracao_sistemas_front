@@ -1,0 +1,54 @@
+/* Remove margens e paddings padrão */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Garante que fontes e tamanhos sejam consistentes */
+html {
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+}
+
+/* Remove estilos padrão de listas */
+ul, ol {
+    list-style: none;
+}
+
+/* Remove sublinhado de links e define cor padrão */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Reseta botões para evitar estilos nativos */
+button, input {
+    font-family: inherit;
+    font-size: inherit;
+    border: none;
+    outline: none;
+}
+
+/* Define um estilo padrão para botões */
+button {
+    cursor: pointer;
+}
+
+/* Remove bordas de elementos interativos no foco (para evitar estilos nativos indesejados) */
+button:focus, input:focus {
+    outline: none;
+}
+
+/* Corrige problemas de espaçamento no body */
+body {
+    line-height: 1.5;
+    background-color: #f4f4f4;
+}
+
+/* Imagens responsivas */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
