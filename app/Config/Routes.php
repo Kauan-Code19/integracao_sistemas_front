@@ -11,7 +11,6 @@ $routes->get('/user_edit/(:num)', 'UserController::userEditView/$1');
 $routes->get('/user_details/(:num)', 'UserController::userDetailsView/$1');
 $routes->get('/user_registration', 'UserController::userRegistrationView');
 $routes->get('/list_users', 'UserController::listUsers');
-$routes->get('/client_list', 'ClientController::clientListView');
 
 $routes->post('/login', 'LoginController::logar');
 $routes->post('/register_user', 'UserController::registerUser');
